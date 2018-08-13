@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createHistory as history } from 'history';
 
 import PostsIndex from './containers/posts_index';
+import PostsShow from './containers/posts_show';
 
 import '../assets/stylesheets/application.scss';
 import postsReducer from './reducers/posts_reducer';
@@ -22,13 +23,12 @@ const middlewares = applyMiddleware(reduxPromise, logger);
 ReactDOM.render(
   <Provider store={createStore(reducers, {}, middlewares)}>
     <Router history={history}>
-
        <div className="thin-container">
           <Switch>
           <Route path="/" exact component={PostsIndex} />
+          <Route path="/posts/:id" component={PostsShow} />
         </Switch>
       </div>
-
     </Router>
   </Provider>,
   document.getElementById('root')
